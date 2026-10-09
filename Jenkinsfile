@@ -10,18 +10,27 @@ pipeline {
 
         stage('Verify Source') {
             steps {
-                sh 'ls -la'
                 sh 'test -f main.py'
                 sh 'test -f requirements.txt'
                 sh 'test -f test_main.py'
                 echo 'FastAPI project files verified'
             }
         }
+
+        stage('Automated Tests') {
+            steps {
+                sh '''
+                    python3 -m venv .venv
+                    .venv/bin/python -m pip install -r requirements.txt
+                    .venv/bin/python -m pytest -v
+                '''
+            }
+        }
     }
 
     post {
         success {
-            echo 'GitHub checkout and source verification succeeded!'
+            echo 'FastAPI automated CI tests passed!'
         }
         failure {
             echo 'Pipeline failed. Check console output.'
