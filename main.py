@@ -25,7 +25,7 @@ items = []
 @app.get("/")
 def home():
     return {
-        "message": "FastAPI automatically deployed by Jenkins CI/CD!",
+        "message": "FastAPI automatically deployed by Jenkins CI/CD! - version check update",
         "status": "success"
     }
 
