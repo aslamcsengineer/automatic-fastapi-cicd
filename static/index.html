@@ -1,0 +1,131 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FastAPI | DevOps Dashboard</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <script src="/static/script.js" defer></script>
+</head>
+<body>
+    <div class="layout">
+        <aside class="sidebar">
+            <div class="brand">
+                <span class="brand-icon">⚡</span>
+                <div>
+                    <h2>FastAPI</h2>
+                    <p>DevOps Console</p>
+                </div>
+            </div>
+
+            <nav>
+                <a href="/" class="nav-link active">◈ Dashboard</a>
+                <a href="#inventory" class="nav-link">▤ Inventory</a>
+                <a href="/docs" class="nav-link">⌘ API Documentation</a>
+                <a href="http://localhost:8081" target="_blank"
+                   rel="noopener noreferrer" class="nav-link">⚙ Jenkins CI/CD</a>
+            </nav>
+
+            <div class="sidebar-footer">
+                <span class="online-dot"></span>
+                Docker Deployment
+            </div>
+        </aside>
+
+        <main class="main">
+            <header class="topbar">
+                <div>
+                    <p class="eyebrow">OVERVIEW</p>
+                    <h1>Application Dashboard</h1>
+                    <p class="subtitle">
+                        Monitor your FastAPI service and manage inventory.
+                    </p>
+                </div>
+                <span class="environment">LOCAL ENVIRONMENT</span>
+            </header>
+
+            <section class="stats">
+                <div class="stat-card">
+                    <p>API Health</p>
+                    <h2 id="health-status">Checking...</h2>
+                    <span id="health-description">Connecting to service</span>
+                </div>
+
+                <div class="stat-card">
+                    <p>Total Items</p>
+                    <h2 id="total-items">0</h2>
+                    <span>Current application inventory</span>
+                </div>
+
+                <div class="stat-card">
+                    <p>Deployment</p>
+                    <h2>Docker</h2>
+                    <span>Managed by Jenkins CI/CD</span>
+                </div>
+            </section>
+
+            <section class="content-grid">
+                <div class="panel">
+                    <div class="panel-header">
+                        <div>
+                            <p class="eyebrow">MANAGEMENT</p>
+                            <h2>Add New Item</h2>
+                        </div>
+                    </div>
+
+                    <form id="item-form">
+                        <label for="item-name">Item Name</label>
+                        <input id="item-name" type="text"
+                               placeholder="e.g. Laptop" required>
+
+                        <label for="item-price">Price (₹)</label>
+                        <input id="item-price" type="number"
+                               min="0" step="0.01"
+                               placeholder="e.g. 50000" required>
+
+                        <button type="submit" id="submit-btn">
+                            + Add Item
+                        </button>
+                    </form>
+
+                    <p id="form-message" role="status"></p>
+                </div>
+
+                <div class="panel" id="inventory">
+                    <div class="panel-header">
+                        <div>
+                            <p class="eyebrow">INVENTORY</p>
+                            <h2>Item Records</h2>
+                        </div>
+                        <button class="refresh-btn" id="refresh-btn">
+                            ↻ Refresh
+                        </button>
+                    </div>
+
+                    <div class="table-wrap">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Item Name</th>
+                                    <th>Price</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody id="items-table">
+                                <tr>
+                                    <td colspan="3">Loading items...</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <footer>
+                FastAPI • Jenkins • Docker • GitHub • Pytest
+            </footer>
+        </main>
+    </div>
+</body>
+</html>
